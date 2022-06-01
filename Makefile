@@ -25,19 +25,23 @@ autoformat:
 	black s4/s4.py s4/data.py s4/train.py s4/sample.py
 	flake8 --show-source s4/s4.py s4/data.py s4/train.py s4/sample.py
 
-notebook: s4/s4.py s4/dss.py
+notebook: s4/s4.py s4/dss.py s4/s4d.py
 	jupytext --to notebook s4/s4.py -o s4.ipynb
 	jupytext --to notebook s4/dss.py -o dss.ipynb
+	jupytext --to notebook s4/s4d.py -o s4d.ipynb
 
-html: s4/s4.py s4/dss.py
+html: s4/s4.py s4/dss.py s4/s4d.py
 	jupytext --to notebook s4/s4.py -o s4.ipynb
 	jupyter nbconvert --to html s4.ipynb
 	jupytext --to notebook s4/dss.py -o dss.ipynb
 	jupyter nbconvert --to html dss.ipynb
+	jupytext --to notebook s4/s4d.py -o s4d.ipynb
+	jupyter nbconvert --to html s4d.ipynb
 
 s4/s4.md: s4/s4.py s4/dss.py
 	jupytext --to markdown s4/s4.py
 	jupytext --to markdown s4/dss.py
+	jupytext --to markdown s4/s4d.py
 
 blog: s4/s4.md
 	pandoc docs/header-includes.yaml s4/s4.md  --katex=/usr/local/lib/node_modules/katex/dist/ --output=docs/index.html --to=html5 --css=docs/github.min.css --css=docs/tufte.css --no-highlight --self-contained --metadata pagetitle="The Annotated S4"
