@@ -38,13 +38,15 @@ html: s4/s4.py s4/dss.py s4/s4d.py
 	jupytext --to notebook s4/s4d.py -o s4d.ipynb
 	jupyter nbconvert --to html s4d.ipynb
 
-s4/s4.md: s4/s4.py s4/dss.py
+md: s4/s4.py s4/dss.py s4/s4d.py
 	jupytext --to markdown s4/s4.py
 	jupytext --to markdown s4/dss.py
 	jupytext --to markdown s4/s4d.py
 
-blog: s4/s4.md
-	pandoc docs/header-includes.yaml s4/s4.md  --katex=/usr/local/lib/node_modules/katex/dist/ --output=docs/index.html --to=html5 --css=docs/github.min.css --css=docs/tufte.css --no-highlight --self-contained --metadata pagetitle="The Annotated S4"
+blog: md
+	pandoc docs/header-includes.yaml s4/s4d.md  --katex=/usr/local/lib/node_modules/katex/dist/ --output=docs/index.html --to=html5 --css=docs/github.min.css --css=docs/tufte.css --no-highlight --self-contained --metadata pagetitle="The Annotated S4"
 
-clean: s4.ipynb
+clean: s4.ipynb dss.ipynb s4d.ipynb
 	rm -f s4.ipynb
+	rm -f dss.ipynb
+	rm -f s4d.ipynb
