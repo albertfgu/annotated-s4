@@ -859,6 +859,8 @@ def test_gen_inverse(L=16, N=4):
 
 # We have effectively replaced an inverse with a weighted dot product.
 # Let's make a small helper function to compute this weight dot product for use.
+
+
 def cauchy_dot(v, omega, lambd):
     return (v / (omega - lambd)).sum()
 
@@ -1126,8 +1128,6 @@ def make_DPLR_HiPPO(N):
 
     # Diagonalize S to V \Lambda V^*
     Lambda_imag, V = eigh(S * -1j)
-    # Lambda, V = jax.jit(eig, backend="cpu")(S)
-    # Lambda, V = eig(jax.device_put(S, device=jax.devices("cpu")[0]))
 
     P = V.conj().T @ P
     B = V.conj().T @ B
@@ -1160,7 +1160,6 @@ def test_conversion(N=8, L=16):
     step = 1.0 / L
     # Compute a HiPPO NPLR matrix.
     Lambda, P, B, _ = make_DPLR_HiPPO(N)
-    # B = B[:, np.newaxis]
     # Random complex Ct
     C = normal(dtype=np.complex64)(rng, (N,))
 
