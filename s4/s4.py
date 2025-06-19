@@ -13,6 +13,8 @@
 
 # *Blog Post and [Library](https://github.com/srush/annotated-s4/) by [Sasha Rush](http://rush-nlp.com/) and [Sidd Karamcheti](https://www.siddkaramcheti.com/)*, v3
 
+# *See also [The Annotated S4D](https://srush.github.io/annotated-s4/s4d), a follow-up but standalone post on simplifications to the S4 model.*
+
 #
 # The [Structured State Space for Sequence
 # Modeling](https://arxiv.org/abs/2111.00396) (S4) architecture is a new approach to very
